@@ -208,13 +208,14 @@ public class MenuDaoImpl implements MenuDao{
 		 boolean result = false;
 	        Connection c = null;
 	        PreparedStatement ps = null;
-	        String sql = "UPDATE Menu SET ACTIVE = 0 WHERE Id = ?";
+	        String sql = "UPDATE Menu SET Active = ? WHERE Id = ?";
 	        
 	        try {
 	            c = DBhelper.getConnection();
 	            if (c != null) {
 	                ps = c.prepareStatement(sql);
-	                ps.setLong(1, id);
+	                ps.setInt(1, 0);
+	                ps.setLong(2, id);
 	                ps.execute();
 	                result = true;
 	            } else {

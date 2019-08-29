@@ -57,15 +57,7 @@ public class MenuFrame extends JFrame {
 		initialComponent();
 		lblNewLabel.setText(Users.getWhoIs());
 		
-		lblId = new JLabel("Id");
-		lblId.setForeground(Color.WHITE);
-		lblId.setBounds(10, 11, 144, 21);
-		contentPane.add(lblId);
 		
-		textFieldId = new JTextField();
-		textFieldId.setColumns(10);
-		textFieldId.setBounds(10, 36, 144, 20);
-		contentPane.add(textFieldId);
 	}
 	private void initialComponent() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -262,6 +254,16 @@ public class MenuFrame extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblNewLabel.setBounds(10, 196, 144, 37);
 		contentPane.add(lblNewLabel);
+		
+		lblId = new JLabel("Id");
+		lblId.setForeground(Color.WHITE);
+		lblId.setBounds(10, 11, 144, 21);
+		contentPane.add(lblId);
+		
+		textFieldId = new JTextField();
+		textFieldId.setColumns(10);
+		textFieldId.setBounds(10, 36, 144, 20);
+		contentPane.add(textFieldId);
 	}
 
 	

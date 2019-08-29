@@ -52,7 +52,7 @@ public class AdminFrame extends JFrame {
     private ExpenseFrame ex;
     private MenuFrame menuFrame;
     private UserFrame us;
-            JButton button_1,btnUpdate,btnAdd,btnDelete;
+            JButton button_1,btnUpdate,btnAdd,btnDelete,menuListBtn ;
             JLabel lblGdvd;
 	
      MenuDao menuDao = new MenuDaoImpl();
@@ -95,31 +95,23 @@ public class AdminFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
+           		//menuListBtn.
+					
 				int selectedRow=table.getSelectedRow();
 				int selectedId=(int)table.getValueAt(selectedRow,0);
 				
 				switch (globBtn) {
 	            case "MenuList":
-	            	menuFrame = new MenuFrame(selectedId,kingService);
-	                menuFrame.button_1.setVisible(false);
-	                menuFrame.button.setVisible(false);
-	                menuFrame.lblProductName.setVisible(false);
-	                menuFrame.textFieldProductName.setVisible(false);
-	                menuFrame.lblProductType.setVisible(false);
-	                menuFrame.textFieldProductType.setVisible(false);
-	                menuFrame.lblPaymentAmount.setVisible(false);
-	                menuFrame.textFieldPaymentAmount.setVisible(false);
-	                menuFrame.lblDescription.setVisible(false);
-	                menuFrame.textFieldDescription.setVisible(false);
-	                menuFrame.lblPurchaseAmount.setVisible(false);
-	                menuFrame.textFieldPurchaseAmount.setVisible(false);
-	                menuFrame.lblActive.setVisible(false);
-	                menuFrame.textFieldActive.setVisible(false);
-	                //menuFrame.lblId.setVisible(true);
-	                //menuFrame.textFieldId.setVisible(true);
-	                menuFrame.setVisible(true);
-	                if(ex!=null)
-	                ex.dispose();
+	            	
+	            	
+	            	try {
+						kingService.deleteMenu(selectedId);
+						ShowMenu();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+	            	
+	            
 	                break;
 	            case "UserList":
 	            	us=new UserFrame();
@@ -135,19 +127,18 @@ public class AdminFrame extends JFrame {
 	                 menuFrame.dispose();
 	                 us.dispose();
 	                break;
-//	            case "TableList":
-//	            	TableFrame tbf=new TableFrame();
-//	            	tbf.setVisible(true);
-//	            	if(ex!=null)
-//	            	ex.dispose();
-//	            	if(us!=null)
-//	            	us.dispose();
-//	            	if(menuFrame!=null)
-//	            	menuFrame.dispose();
-//	                break;
 	            default:
 	                JOptionPane.showMessageDialog(null, "Please , select menu!", "Warning", JOptionPane.WARNING_MESSAGE);
 	        }
+				
+//				}else {
+//					
+//					JOptionPane.showMessageDialog(null, "Please, choose menu type!");
+//				}
+				
+				
+				
+				
 			}
 		});
 		btnDelete.setBackground(new Color(255, 255, 255));
@@ -228,7 +219,6 @@ public class AdminFrame extends JFrame {
 	                menuFrame.setVisible(true);
 	                if(ex!=null)
 	                ex.dispose();
-	                
 	                break;
 	            case "UserList":
 	            	us=new UserFrame();
@@ -287,7 +277,7 @@ public class AdminFrame extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JButton menuListBtn = new JButton("MenuList");
+		menuListBtn = new JButton("MenuList");
 		menuListBtn.setForeground(new Color(112, 128, 144));
 		menuListBtn.setBackground(new Color(255, 255, 255));
 		menuListBtn.addMouseListener(new MouseAdapter() {
