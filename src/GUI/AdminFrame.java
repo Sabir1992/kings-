@@ -48,12 +48,12 @@ public class AdminFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private String globBtn="test";
     private ExpenseFrame ex;
     private MenuFrame menuFrame;
     private UserFrame us;
-    private JTextField textField_1,textField_2,textField_3,textField_4,textField_6;
-    JButton button_1,btnUpdate,btnAdd,btnDelete;
-    JLabel lblGdvd;
+            JButton button_1,btnUpdate,btnAdd,btnDelete;
+            JLabel lblGdvd;
 	
      MenuDao menuDao = new MenuDaoImpl();
 	 KingService kingService = new KingServiceImpl(menuDao);
@@ -66,9 +66,7 @@ public class AdminFrame extends JFrame {
 	 TableDao tableDao = new TableDaoImpl();
 	 KingService kingTable= new KingServiceImpl(tableDao);
 	 
-	 private String globBtn="test";
 	 
-	
 	public AdminFrame() {
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -106,12 +104,19 @@ public class AdminFrame extends JFrame {
 	                menuFrame.button_1.setVisible(false);
 	                menuFrame.button.setVisible(false);
 	                menuFrame.lblProductName.setVisible(false);
+	                menuFrame.textFieldProductName.setVisible(false);
 	                menuFrame.lblProductType.setVisible(false);
+	                menuFrame.textFieldProductType.setVisible(false);
 	                menuFrame.lblPaymentAmount.setVisible(false);
+	                menuFrame.textFieldPaymentAmount.setVisible(false);
 	                menuFrame.lblDescription.setVisible(false);
+	                menuFrame.textFieldDescription.setVisible(false);
 	                menuFrame.lblPurchaseAmount.setVisible(false);
+	                menuFrame.textFieldPurchaseAmount.setVisible(false);
 	                menuFrame.lblActive.setVisible(false);
-	                menuFrame.textField_6.setVisible(false);
+	                menuFrame.textFieldActive.setVisible(false);
+	                //menuFrame.lblId.setVisible(true);
+	                //menuFrame.textFieldId.setVisible(true);
 	                menuFrame.setVisible(true);
 	                if(ex!=null)
 	                ex.dispose();
@@ -163,6 +168,8 @@ public class AdminFrame extends JFrame {
 	            	menuFrame = new MenuFrame(selectedId,kingService);
 	                menuFrame.button.setVisible(false);
 	                menuFrame.button_2.setVisible(false);
+	                menuFrame.lblId.setVisible(false);
+	                menuFrame.textFieldId.setVisible(false);
 	                menuFrame.setVisible(true);
 	                if(ex!=null)
 	                ex.dispose();
@@ -216,6 +223,8 @@ public class AdminFrame extends JFrame {
 	                menuFrame = new MenuFrame();
 	                menuFrame.button_1.setVisible(false);
 	                menuFrame.button_2.setVisible(false);
+	                menuFrame.lblId.setVisible(false);
+	                menuFrame.textFieldId.setVisible(false);
 	                menuFrame.setVisible(true);
 	                if(ex!=null)
 	                ex.dispose();

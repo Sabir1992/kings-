@@ -34,10 +34,14 @@ import java.awt.event.WindowEvent;
 public class MenuFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldProductName,textFieldProductType,textField_3,textField_4,textField_5,textField_6;
-	        JLabel lblNewLabel,lblGdvd,lblProductType,lblProductName,lblPaymentAmount,lblDescription,lblActive,lblPurchaseAmount;
+	        JTextField textFieldProductName,textFieldProductType,textFieldPaymentAmount,
+	        textFieldDescription,textFieldActive,textFieldPurchaseAmount,textFieldId,textField;
+	        JLabel lblNewLabel,lblGdvd,lblProductType,lblProductName,lblPaymentAmount,
+	        lblDescription,lblActive,lblPurchaseAmount,lblId;
 	public JButton button_1,button_2,button;
+	
 	private int selectedId;
+	
 	        MenuDao menuDao = new MenuDaoImpl();
 	        KingService kingService = new KingServiceImpl(menuDao);
 	        
@@ -52,6 +56,16 @@ public class MenuFrame extends JFrame {
 	public MenuFrame() {
 		initialComponent();
 		lblNewLabel.setText(Users.getWhoIs());
+		
+		lblId = new JLabel("Id");
+		lblId.setForeground(Color.WHITE);
+		lblId.setBounds(10, 11, 144, 21);
+		contentPane.add(lblId);
+		
+		textFieldId = new JTextField();
+		textFieldId.setColumns(10);
+		textFieldId.setBounds(10, 36, 144, 20);
+		contentPane.add(textFieldId);
 	}
 	private void initialComponent() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -87,30 +101,30 @@ public class MenuFrame extends JFrame {
 		lblPaymentAmount.setBounds(204, 11, 144, 21);
 		contentPane.add(lblPaymentAmount);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(204, 36, 144, 20);
-		contentPane.add(textField_3);
+		textFieldPaymentAmount = new JTextField();
+		textFieldPaymentAmount.setColumns(10);
+		textFieldPaymentAmount.setBounds(204, 36, 144, 20);
+		contentPane.add(textFieldPaymentAmount);
 		
 		lblDescription = new JLabel("Description");
 		lblDescription.setForeground(new Color(255, 255, 255));
 		lblDescription.setBounds(204, 67, 144, 21);
 		contentPane.add(lblDescription);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(204, 92, 144, 20);
-		contentPane.add(textField_4);
+		textFieldDescription = new JTextField();
+		textFieldDescription.setColumns(10);
+		textFieldDescription.setBounds(204, 92, 144, 20);
+		contentPane.add(textFieldDescription);
 		
 		lblActive = new JLabel("Active");
 		lblActive.setForeground(new Color(255, 255, 255));
 		lblActive.setBounds(204, 123, 144, 21);
 		contentPane.add(lblActive);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(204, 148, 144, 20);
-		contentPane.add(textField_5);
+		textFieldActive = new JTextField();
+		textFieldActive.setColumns(10);
+		textFieldActive.setBounds(204, 148, 144, 20);
+		contentPane.add(textFieldActive);
 		
 		lblPurchaseAmount = new JLabel("Purchase amount");
 		lblPurchaseAmount.setForeground(new Color(255, 255, 255));
@@ -130,12 +144,12 @@ public class MenuFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				String userName=lblNewLabel.getText();
-				String productName=textField_1.getText();
-				String productType=textField_2.getText();
-				String purchaseAmount=textField_6.getText();
-				String paymentAmount=textField_3.getText();
-				String description=textField_4.getText();
-				String active=textField_5.getText();
+				String productName=textFieldProductName.getText();
+				String productType=textFieldProductType.getText();
+				String purchaseAmount=textFieldPurchaseAmount.getText();
+				String paymentAmount=textFieldPaymentAmount.getText();
+				String description=textFieldDescription.getText();
+				String active=textFieldActive.getText();
 				
 				Menu menu=new Menu();
 			    menu.setUserName(userName);
@@ -169,12 +183,12 @@ public class MenuFrame extends JFrame {
 				
 				try {
 				String userName=lblNewLabel.getText();
-				String productName=textField_1.getText();
-				String productType=textField_2.getText();
-				String purchaseAmount=textField_6.getText();
-				String paymentAmount=textField_3.getText();
-				String description=textField_4.getText();
-				String active=textField_5.getText();
+				String productName=textFieldProductName.getText();
+				String productType=textFieldProductType.getText();
+				String purchaseAmount=textFieldPurchaseAmount.getText();
+				String paymentAmount=textFieldPaymentAmount.getText();
+				String description=textFieldDescription.getText();
+				String active=textFieldActive.getText();
 				
 				Menu menu=new Menu();
 				menu.setUserName(userName);
@@ -211,12 +225,12 @@ public class MenuFrame extends JFrame {
 				
 				try {
 					String userName=lblNewLabel.getText();
-					String productName=textField_1.getText();
-					String productType=textField_2.getText();
-					String purchaseAmount=textField_6.getText();
-					String paymentAmount=textField_3.getText();
-					String description=textField_4.getText();
-					String active=textField_5.getText();
+					String productName=textFieldProductName.getText();
+					String productType=textFieldProductType.getText();
+					String purchaseAmount=textFieldPurchaseAmount.getText();
+					String paymentAmount=textFieldPaymentAmount.getText();
+					String description=textFieldDescription.getText();
+					String active=textFieldActive.getText();
 					
 					Menu menu=new Menu();
 					menu.setUserName(userName);
@@ -246,7 +260,7 @@ public class MenuFrame extends JFrame {
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(10, 200, 144, 37);
+		lblNewLabel.setBounds(10, 196, 144, 37);
 		contentPane.add(lblNewLabel);
 	}
 
