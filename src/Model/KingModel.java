@@ -6,10 +6,6 @@ public abstract class KingModel {
 	
 	private int Id;
 	private Date RecordDate;
-	@Override
-	public String toString() {
-		return "KingModel [Id=" + Id + "]";
-	}
 	private int Active;
 	
 	public int getId() {

@@ -4,13 +4,16 @@ import java.util.List;
 
 import javax.swing.JComboBox;
 
+import DaoImplClass.TableDaoImpl;
 import DaoInterface.ExpenseDao;
 import DaoInterface.SaleDao;
+import DaoInterface.TableDao;
 import DaoInterface.MenuDao;
 import DaoInterface.UserDao;
 import Model.Expense;
 import Model.Menu;
 import Model.Sale;
+import Model.Tables;
 import Model.Users;
 
 public class KingServiceImpl implements KingService {
@@ -19,6 +22,7 @@ public class KingServiceImpl implements KingService {
 	private MenuDao menuDao;
 	private UserDao userDao;
 	private ExpenseDao expenseDao;
+	private TableDao tableDao;
 
 	public KingServiceImpl(SaleDao saleDao) {
 		this.saleDao = saleDao;
@@ -34,6 +38,10 @@ public class KingServiceImpl implements KingService {
 	
 	public KingServiceImpl(ExpenseDao expenseDao) {
 		this.expenseDao = expenseDao;
+	}
+	
+	public KingServiceImpl(TableDao tableDao) {
+		this.tableDao = tableDao;
 	}
 
 	@Override
@@ -136,6 +144,26 @@ public class KingServiceImpl implements KingService {
 	public boolean deleteSale(String productName) throws Exception {
 		return saleDao.deleteSale(productName);
 	}
+
+	
+	// -----------------------------------------------------------------------------------
+	
+	@Override
+	public boolean addTable(Tables tables) throws Exception {
+		return tableDao.addTable(tables);
+	}
+
+	@Override
+	public boolean updateTable(Tables tables, long id) throws Exception {
+		return tableDao.updateTable(tables, id);
+	}
+
+	@Override
+	public List<Tables> getTableList() throws Exception {
+		return tableDao.getTableList();
+	}
+	
+	// -----------------------------------------------------------------------------------
 
 	
 

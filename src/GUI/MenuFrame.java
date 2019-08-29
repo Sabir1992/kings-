@@ -34,8 +34,8 @@ import java.awt.event.WindowEvent;
 public class MenuFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField_1,textField_2,textField_3,textField_4,textField_5,textField_6;
-	        JLabel lblNewLabel,lblGdvd;
+	private JTextField textFieldProductName,textFieldProductType,textField_3,textField_4,textField_5,textField_6;
+	        JLabel lblNewLabel,lblGdvd,lblProductType,lblProductName,lblPaymentAmount,lblDescription,lblActive,lblPurchaseAmount;
 	public JButton button_1,button_2,button;
 	private int selectedId;
 	        MenuDao menuDao = new MenuDaoImpl();
@@ -62,27 +62,27 @@ public class MenuFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblProductName = new JLabel("Product name");
+		lblProductName = new JLabel("Product name");
 		lblProductName.setForeground(new Color(255, 255, 255));
 		lblProductName.setBounds(10, 11, 144, 21);
 		contentPane.add(lblProductName);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(10, 36, 144, 20);
-		contentPane.add(textField_1);
+		textFieldProductName = new JTextField();
+		textFieldProductName.setColumns(10);
+		textFieldProductName.setBounds(10, 36, 144, 20);
+		contentPane.add(textFieldProductName);
 		
-		JLabel lblProductType = new JLabel("Product type");
+		lblProductType= new JLabel("Product type");
 		lblProductType.setForeground(new Color(255, 255, 255));
 		lblProductType.setBounds(10, 67, 144, 21);
 		contentPane.add(lblProductType);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(10, 92, 144, 20);
-		contentPane.add(textField_2);
+		textFieldProductType = new JTextField();
+		textFieldProductType.setColumns(10);
+		textFieldProductType.setBounds(10, 92, 144, 20);
+		contentPane.add(textFieldProductType);
 		
-		JLabel lblPaymentAmount = new JLabel("Payment amount");
+		lblPaymentAmount = new JLabel("Payment amount");
 		lblPaymentAmount.setForeground(new Color(255, 255, 255));
 		lblPaymentAmount.setBounds(204, 11, 144, 21);
 		contentPane.add(lblPaymentAmount);
@@ -92,7 +92,7 @@ public class MenuFrame extends JFrame {
 		textField_3.setBounds(204, 36, 144, 20);
 		contentPane.add(textField_3);
 		
-		JLabel lblDescription = new JLabel("Description");
+		lblDescription = new JLabel("Description");
 		lblDescription.setForeground(new Color(255, 255, 255));
 		lblDescription.setBounds(204, 67, 144, 21);
 		contentPane.add(lblDescription);
@@ -102,7 +102,7 @@ public class MenuFrame extends JFrame {
 		textField_4.setBounds(204, 92, 144, 20);
 		contentPane.add(textField_4);
 		
-		JLabel lblActive = new JLabel("Active");
+		lblActive = new JLabel("Active");
 		lblActive.setForeground(new Color(255, 255, 255));
 		lblActive.setBounds(204, 123, 144, 21);
 		contentPane.add(lblActive);
@@ -112,15 +112,15 @@ public class MenuFrame extends JFrame {
 		textField_5.setBounds(204, 148, 144, 20);
 		contentPane.add(textField_5);
 		
-		JLabel lblPurchaseAmount = new JLabel("Purchase amount");
+		lblPurchaseAmount = new JLabel("Purchase amount");
 		lblPurchaseAmount.setForeground(new Color(255, 255, 255));
 		lblPurchaseAmount.setBounds(10, 123, 144, 21);
 		contentPane.add(lblPurchaseAmount);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(10, 148, 144, 20);
-		contentPane.add(textField_6);
+		textFieldPurchaseAmount = new JTextField();
+		textFieldPurchaseAmount.setColumns(10);
+		textFieldPurchaseAmount.setBounds(10, 148, 144, 20);
+		contentPane.add(textFieldPurchaseAmount);
 		
 		button = new JButton("Add");
 		button.setForeground(new Color(112, 128, 144));

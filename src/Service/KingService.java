@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 import Model.Expense;
 import Model.Menu;
 import Model.Sale;
+import Model.Tables;
 import Model.Users;
 
 public interface KingService {
@@ -49,11 +50,19 @@ public interface KingService {
 	
 
 	List<Sale> getSaleList() throws Exception;
-	
-    Sale getSaleByName(String ProductName) throws Exception;
-	
+
+	Sale getSaleByName(String ProductName) throws Exception;
+
 	boolean updateSale(Sale sale, String productName) throws Exception;
-	
+
 	boolean deleteSale(String productName) throws Exception;
+	
+	
+
+	boolean addTable(Tables tables) throws Exception;
+
+	boolean updateTable(Tables tables, long id) throws Exception;
+
+	List<Tables> getTableList() throws Exception;
 
 }

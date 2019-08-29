@@ -14,10 +14,12 @@ import javax.swing.table.DefaultTableModel;
 import DaoImplClass.ExpenseDaoImpl;
 import DaoImplClass.MenuDaoImpl;
 import DaoImplClass.SaleDaoImpl;
+import DaoImplClass.TableDaoImpl;
 import DaoImplClass.UserDaoImpl;
 import DaoInterface.ExpenseDao;
 import DaoInterface.MenuDao;
 import DaoInterface.SaleDao;
+import DaoInterface.TableDao;
 import DaoInterface.UserDao;
 import Model.Expense;
 import Model.Menu;
@@ -46,11 +48,11 @@ public class AdminFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-    private ExpenseFrame ex ;
+    private ExpenseFrame ex;
     private MenuFrame menuFrame;
     private UserFrame us;
     private JTextField textField_1,textField_2,textField_3,textField_4,textField_6;
-    JButton button_1;
+    JButton button_1,btnUpdate,btnAdd,btnDelete;
     JLabel lblGdvd;
 	
      MenuDao menuDao = new MenuDaoImpl();
@@ -61,6 +63,8 @@ public class AdminFrame extends JFrame {
 	 KingService kingSer = new KingServiceImpl(expenseDao);
 	 SaleDao saleDao = new SaleDaoImpl();
 	 KingService kingSale = new KingServiceImpl(saleDao);
+	 TableDao tableDao = new TableDaoImpl();
+	 KingService kingTable= new KingServiceImpl(tableDao);
 	 
 	 private String globBtn="test";
 	 
@@ -88,7 +92,7 @@ public class AdminFrame extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton btnDelete = new JButton("Delete");
+		btnDelete = new JButton("Delete");
 		btnDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -101,7 +105,15 @@ public class AdminFrame extends JFrame {
 	            	menuFrame = new MenuFrame(selectedId,kingService);
 	                menuFrame.button_1.setVisible(false);
 	                menuFrame.button.setVisible(false);
+	                menuFrame.lblProductName.setVisible(false);
+	                menuFrame.lblProductType.setVisible(false);
+	                menuFrame.lblPaymentAmount.setVisible(false);
+	                menuFrame.lblDescription.setVisible(false);
+	                menuFrame.lblPurchaseAmount.setVisible(false);
+	                menuFrame.lblActive.setVisible(false);
+	                menuFrame.textField_6.setVisible(false);
 	                menuFrame.setVisible(true);
+	                if(ex!=null)
 	                ex.dispose();
 	                break;
 	            case "UserList":
@@ -118,6 +130,16 @@ public class AdminFrame extends JFrame {
 	                 menuFrame.dispose();
 	                 us.dispose();
 	                break;
+//	            case "TableList":
+//	            	TableFrame tbf=new TableFrame();
+//	            	tbf.setVisible(true);
+//	            	if(ex!=null)
+//	            	ex.dispose();
+//	            	if(us!=null)
+//	            	us.dispose();
+//	            	if(menuFrame!=null)
+//	            	menuFrame.dispose();
+//	                break;
 	            default:
 	                JOptionPane.showMessageDialog(null, "Please , select menu!", "Warning", JOptionPane.WARNING_MESSAGE);
 	        }
@@ -142,11 +164,13 @@ public class AdminFrame extends JFrame {
 	                menuFrame.button.setVisible(false);
 	                menuFrame.button_2.setVisible(false);
 	                menuFrame.setVisible(true);
+	                if(ex!=null)
 	                ex.dispose();
 	                break;
 	            case "UserList":
 	            	us=new UserFrame();
 	            	us.setVisible(true);
+	            	if(ex!=null)
 	            	ex.dispose();
 	                break;
 	            case "SaleList":
@@ -156,7 +180,19 @@ public class AdminFrame extends JFrame {
 	                ex = new ExpenseFrame();
 	                ex.setVisible(true);
 	                menuFrame.dispose();
+	                if(us!=null)
 	                us.dispose();
+	                break;
+	            case "TableList":
+	            	TableFrame tbf=new TableFrame();
+	            	TableFrame.btnAdd.setVisible(false);
+	            	tbf.setVisible(true);
+	            	if(ex!=null)
+	            	ex.dispose();
+	            	if(us!=null)
+	            	us.dispose();
+	            	if(menuFrame!=null)
+	            	menuFrame.dispose();
 	                break;
 	            default:
 	                JOptionPane.showMessageDialog(null, "Please , select menu!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -190,8 +226,16 @@ public class AdminFrame extends JFrame {
 	            	us.setVisible(true);
 	            	ex.dispose();
 	                break;
-	            case "SaleList":
-
+	            case "TableList":
+	            	TableFrame tbf=new TableFrame();
+	            	TableFrame.btnUpdate.setVisible(false);
+	            	tbf.setVisible(true);
+	            	if(ex!=null)
+	            	ex.dispose();
+	            	if(us!=null)
+	            	us.dispose();
+	            	if(menuFrame!=null)
+	            	menuFrame.dispose();
 	                break;
 	            case "ExpenseList":
 	                ex = new ExpenseFrame();
@@ -242,6 +286,7 @@ public class AdminFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				ShowMenu();
 				globBtn="MenuList";
+				btnDelete.setVisible(true);
 			}
 		});
 		menuListBtn.setBounds(10, 11, 113, 23);
@@ -255,6 +300,7 @@ public class AdminFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				ShowUser();
 				globBtn="UserList";
+				btnDelete.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(10, 43, 113, 23);
@@ -268,6 +314,7 @@ public class AdminFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				ShowExpense();
 				globBtn="ExpenseList";
+				btnDelete.setVisible(true);
 			}
 		});
 		btnExpenselist.setBounds(10, 77, 113, 23);
@@ -281,10 +328,25 @@ public class AdminFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				ShowSale();
 				globBtn="SaleList";
+				btnDelete.setVisible(true);
 			}
 		});
 		btnSalelist.setBounds(10, 109, 113, 23);
 		panel_1.add(btnSalelist);
+		
+		JButton btnTablelist = new JButton("TableList");
+		btnTablelist.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ShowTables();
+				globBtn="TableList";
+				btnDelete.setVisible(false);
+			}
+		});
+		btnTablelist.setForeground(new Color(112, 128, 144));
+		btnTablelist.setBackground(Color.WHITE);
+		btnTablelist.setBounds(10, 143, 113, 23);
+		panel_1.add(btnTablelist);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(112, 128, 144));
@@ -417,5 +479,29 @@ public class AdminFrame extends JFrame {
 			e.printStackTrace();
 		}
 
+	}
+	
+	private void ShowTables() {
+
+		try {
+			DefaultTableModel dtm = new DefaultTableModel();
+			table.setModel(dtm);
+			dtm.addColumn("Id");
+			dtm.addColumn("TableNumber");
+			dtm.addColumn("TableStatus");
+			dtm.addColumn("TableName");
+			dtm.addColumn("RecordDate");
+			dtm.addColumn("Active");
+
+			List<Model.Tables> tableList = kingTable.getTableList();
+			for (Model.Tables tab : tableList) {
+				Object[] tableData = new Object[] { tab.getId(), tab.getTableNumber(), tab.getTableStatus(),
+						tab.getTableName(),tab.getRecordDate(), tab.getActive() };
+				dtm.addRow(tableData);
+			}
+			dtm.fireTableDataChanged();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
